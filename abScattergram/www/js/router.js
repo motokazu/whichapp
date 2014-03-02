@@ -39,7 +39,8 @@ define(["backbone"], function( Backbone ){
 			"graphs/:id/items" : "items",
 			"graphs/:id/items/add": "additem",
 			"graphs/:id/items/:itemid": "item",
-			"graphs/:id/evaluate" : "evaluate"
+			"graphs/:id/evaluate" : "evaluate",
+			"graphs/:id/edit" : "editgraph"
 		},
 		home: function(){
 			$.mobile.changePage("#graphs", {reverse:false, changeHash:false});	
@@ -68,6 +69,17 @@ define(["backbone"], function( Backbone ){
 					model : model
 				});
 				$.mobile.changePage("#addgraph",  {reverse:false, changeHash:false});				
+			});
+		},
+		editgraph: function(id){
+			var that = this;
+			require(["views/EditGraphView"], function(EditGraphView){
+				var graph = that.GraphCollection.get(id);
+				var editGraphView = new EditGraphView({
+					model : graph,
+					backurl : location.hash
+				});
+				$.mobile.changePage("#editgraph", {transition:"slideup" ,reverse:false, changeHash:false});
 			});
 		},
 		items : function(id){

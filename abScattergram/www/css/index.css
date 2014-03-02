@@ -183,3 +183,8 @@ h1 {
 	color: #fff;
 }
 .ui-btn-up-r, .ui-btn-hover-r, .ui-btn-down-r { font-family: Helvetica, Arial, sans-serif; }
+
+/* no border navbar */
+.ui-navbar li .ui-btn .ui-btn-inner, .ui-navbar li .ui-btn {
+    border: 0 solid red !important;
+}

@@ -68,7 +68,15 @@
 			<div data-role="content">
 				<h3 class="graphtitle"></h3>
 				<div class="chart"></div>
-				<a href="javascript:void(0);" class="evaluate" data-role="button" data-icon="edit">Evaluate</a>
+				<a href="javascript:void(0);" class="evaluate" data-role="button">Evaluate</a>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+				        <li><a href="javascript:void(0);" class="edit ui-btn">Edit</a></li>
+				        <li><a href="javascript:void(0);" class="share ui-btn">Share</a></li>
+				    </ul>
+				</div>
 			</div>
 		</div>
 		
@@ -91,6 +99,29 @@
 					<input type="text" name="axisy" id="axisy" value="" required>
 					<span class="error axisy"></span>
 					<a href="javascript:void(0);" class="add" data-role="button">Add</a>
+				</form>
+			</div>
+		</div>
+		
+		<!--
+			Edit Graph Page -->
+		<div id="editgraph" data-role="page" data-title="NewGraph">
+			<div data-role="header">
+				<h1>Edit Graph</h1>
+			</div>
+			<div data-role="content">
+				<form>
+					<label for="title">Title:</label>
+					<input type="text" name="title" id="title" value="" required>
+					<span class="error title"></span>
+					<label for="axisx">Axis(x):</label>
+					<input type="text" name="axisx" id="axisx" value="" required>
+					<span class="error axisx"></span>
+					<label for="axisy">Axis(y):</label>
+					<input type="text" name="axisy" id="axisy" value="" required>
+					<span class="error axisy"></span>
+					<a href="javascript:void(0);" class="update" data-role="button">Update</a>
+					<a href="javascript:void(0);" class="backprev" data-role="button">Cancel</a>
 				</form>
 			</div>
 		</div>
