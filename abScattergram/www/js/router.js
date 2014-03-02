@@ -25,7 +25,8 @@ define(["backbone"], function( Backbone ){
 					collection: that.GraphCollection
 				});
 				graphsView.collection.fetch().done(function(){
-					$.mobile.changePage("#graphs", {reverse:false, changeHash:false});					
+					$.mobile.changePage("#graphs", {reverse:false, changeHash:false});
+					$("body").show();
 				});
 			});
 		},
