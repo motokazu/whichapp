@@ -14,6 +14,17 @@ define(["jquery", "backbone"], function($, Backbone){
 			this.collectionY = options.collectionY;
 			$(this.el).undelegate('.firstitem', 'click');
 			$(this.el).undelegate('.seconditem', 'click');
+			
+			// clear textfield
+			this.$(".evaluation-axis").text("XXX");
+			this.$(".firstitem").text("A");
+			this.$(".seconditem").text("B");
+			// reset counter
+			var eXc = this.collectionX.where({win: undefined});
+			var eYc = this.collectionY.where({win: undefined});
+			var numofitems = eXc.length + eYc.length;
+			this.$(".remain").text(numofitems);
+			this.$(".total").text(numofitems);
 		},
 		winA : function(){
 			var e = this.evaluation.data;
@@ -52,9 +63,9 @@ define(["jquery", "backbone"], function($, Backbone){
 			this.getNextItem();
 		},
 		getNextItem : function(){
-			var eX = this.collectionX.findWhere({win: undefined});
-			var eY = this.collectionY.findWhere({win: undefined});
-			if(eX || eY){
+			var eXc = this.collectionX.where({win: undefined});
+			var eYc = this.collectionY.where({win: undefined});
+			if(eXc.length > 0 || eYc.length > 0){
 				this.render();
 			} else {
 				function alertDismissed() {
@@ -71,9 +82,15 @@ define(["jquery", "backbone"], function($, Backbone){
 		render : function(){
 			this.$(".graphname").text(this.model.get('title'));
 			
-			var eX = this.collectionX.findWhere({win: undefined});
-			var eY = this.collectionY.findWhere({win: undefined});
-			if(eX || eY){
+			var eXc = this.collectionX.where({win: undefined});
+			var eYc = this.collectionY.where({win: undefined});
+			if(eXc.length > 0 || eYc.length > 0){
+				var numofitems = eXc.length + eYc.length;
+				this.$(".remain").text(numofitems);
+				
+				var eX = this.collectionX.findWhere({win: undefined});
+				var eY = this.collectionY.findWhere({win: undefined});
+				
 				var e = eX ? eX : eY;
 				
 				this.evaluation = {
