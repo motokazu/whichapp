@@ -22,13 +22,21 @@ define(["jquery", "backbone", "d3"], function($, Backbone,d3){
 				    .append("svg")
 				    .attr("width", svgWidth)
 					.attr("height", svgHeight);
+				
+				// adjust center to (0,0)
+				var xmax = Math.abs(d3.max(dataset, function(d) {return d.x;}));
+				var xmin = Math.abs(d3.min(dataset, function(d) {return d.x;}));
+				var xdomain = (xmax > xmin)?xmax:xmin;
 				var xScale = d3.scale.linear()
-		                     //.domain([0, d3.max(dataset, function(d) { return d.x; })])
-							 .domain([0, 1])
+							 .domain([-xdomain,xdomain])
 		                     .range([padding, svgWidth - padding]);
+				
+			 	// adjust center to (0,0)
+				var ymax = Math.abs(d3.max(dataset, function(d) {return d.y;}));
+ 				var ymin = Math.abs(d3.min(dataset, function(d) {return d.y;}));
+ 				var ydomain = (ymax > ymin)?ymax:ymin;
 				var yScale = d3.scale.linear()
-				             //.domain([0, d3.max(dataset, function(d) { return d.y; })])
-							 .domain([0, 1])
+							 .domain([-ydomain,ydomain])
 				             .range([svgHeight - padding, padding]);
 			    var rScale = d3.scale.linear()
 			                 .domain([0, d3.max(dataset, function(d) { return d.y; })])
